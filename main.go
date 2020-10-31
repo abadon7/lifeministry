@@ -8,7 +8,7 @@ import (
 	"github.com/julienschmidt/httprouter"
 )
 
-const ServerAddr = "localhost:8080"
+const ServerAddr = ":8080"
 
 var db Storage
 var router *httprouter.Router
