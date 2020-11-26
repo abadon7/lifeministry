@@ -27,8 +27,17 @@ func init() {
 	router = httprouter.New()
 	router.GET("/", welcome)
 	router.GET("/students", GetStudents)
+	router.GET("/students/:id", GetStudent)
+	router.GET("/assigments", GetAssigments)
+	router.GET("/partners", GetPartners)
 
 	router.POST("/students", AddStudent)
+	router.POST("/assigments", AddAssigment)
+
+	router.PUT("/students", UpdtStudent)
+
+	router.DELETE("/students/:id", DeleteStudent)
+
 }
 
 func welcome(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
@@ -42,7 +51,6 @@ func getListenPort() (string, error) {
 
 	}
 	return ":" + port, nil
-
 }
 
 func main() {

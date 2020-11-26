@@ -1,8 +1,8 @@
 package main
 
-type assigment struct {
-	ID          int
-	Name        string
-	Type        string
-	paricipants int
+type Assigment struct {
+	ID           int    `json:"id"`
+	Name         string `json:"name"`
+	Type         string `json:"type"`
+	Participants int    `json:"participants"`
 }

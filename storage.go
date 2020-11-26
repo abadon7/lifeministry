@@ -8,9 +8,15 @@ const (
 )
 
 type Storage interface {
-	SaveStudent(Student) error
-	//FindStudent(Student) ([]Student, error)
-	FindStudents() ([]Student, error)
+	SaveStudent(...Student) error
+	FindStudent(Student) ([]Student, error)
+	UpdateStudent(Student) error
+	RemoveStudent(Student) error
+	FindStudents(string, string) ([]Student, error)
+
+	SaveAssigment(Assigment) error
+	FindAssigments() ([]Assigment, error)
+
 	MakeMigrations() error
 }
 
