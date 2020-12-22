@@ -40,14 +40,28 @@ func (s *StorageSQLite) MakeMigrations() error {
 		note VARCHAR(128) NULL,
 		last TIMESTAMP DEFAULT DATETIME,
 		lastpartner INTEGER NOT NULL);`
-
 	_, err := s.db.Exec(q)
 	if err != nil {
 		return err
 	}
 
-	qA := `CREATE TABLE IF NOT EXISTS assigments (id INTEGER PRIMARY KEY AUTOINCREMENT, name VARCHAR(64) NOT NULL, participants INTEGER NOT NULL, type VARCHAR(16));`
+	qA := `CREATE TABLE IF NOT EXISTS assigments (
+		id INTEGER PRIMARY KEY AUTOINCREMENT,
+		name VARCHAR(64) NOT NULL,
+		participants INTEGER NOT NULL,
+		type VARCHAR(16));`
 	if _, err := s.db.Exec(qA); err != nil {
+		return err
+	}
+
+	qB := `CREATE TABLE IF NOT EXISTS assignedtolist (
+		id INTEGER PRIMARY KEY AUTOINCREMENT,
+		inchargeid INTEGER NOT NULL,
+		helperid INTEGER NOT NULL,
+		date TIMESTAMP DEFAULT DATETIME,
+		assigmenttype INTEGER NOT NULL
+	);`
+	if _, err := s.db.Exec(qB); err != nil {
 		return err
 	}
 
@@ -187,26 +201,26 @@ func (s *StorageSQLite) RemoveStudent(criteria Student) error {
 	return nil
 }
 
-func (s *StorageSQLite) SaveAssigment(assigment Assigment) error {
+func (s *StorageSQLite) SaveAssigment(assigments ...Assigment) error {
 	q := `INSERT INTO assigments (name,participants,type) VALUES(?,?,?)`
 
 	// y evitar código malicioso.
-	stmt, err := s.db.Prepare(q)
-	if err != nil {
-		return err
+	for _, assigment := range assigments {
+		stmt, err := s.db.Prepare(q)
+		if err != nil {
+			return err
+		}
 
-	}
-	defer stmt.Close()
+		defer stmt.Close()
 
-	r, err := stmt.Exec(assigment.Name, assigment.Participants, assigment.Type)
-	if err != nil {
-		return err
-
-	}
-	// Confirmamos que una fila fuera afectada, debido a que insertamos un
-	if i, err := r.RowsAffected(); err != nil || i != 1 {
-		return errors.New("ERROR: Se esperaba una fila afectada")
-
+		r, err := stmt.Exec(assigment.Name, assigment.Participants, assigment.Type)
+		if err != nil {
+			return err
+		}
+		// Confirmamos que una fila fuera afectada, debido a que insertamos un
+		if i, err := r.RowsAffected(); err != nil || i != 1 {
+			return errors.New("ERROR: Se esperaba una fila afectada")
+		}
 	}
 	// Si llegamos a este punto consideramos que todo el proceso fue exitoso
 	return nil
@@ -231,4 +245,22 @@ func (s *StorageSQLite) FindAssigments() ([]Assigment, error) {
 	}
 
 	return assigments, nil
+}
+
+func (s *StorageSQLite) FindAssigment(criteria Assigment) ([]Assigment, error) {
+	var assigments []Assigment
+
+	q := "SELECT * from assigments WHERE id=?"
+
+	if criteria.ID != 0 {
+		var assigment Assigment
+		err := s.db.QueryRow(q, criteria.ID).Scan(&assigment.ID, &assigment.Name, &assigment.Participants, &assigment.Type)
+		if err != nil {
+			return assigments, err
+		}
+
+		assigments = append(assigments, assigment)
+		return assigments, nil
+	}
+	return assigments, fmt.Errorf("No assigment id especified")
 }

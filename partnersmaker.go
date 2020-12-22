@@ -4,32 +4,65 @@ import (
 	"fmt"
 	"math/rand"
 	"strconv"
+	"time"
 )
 
 type Couple struct {
-	InCharge Student `json:"incharge"`
-	Helper   Student `json:"helper"`
+	InCharge Student   `json:"incharge"`
+	Helper   Student   `json:"helper"`
+	Type     Assigment `json:"assigmenttype"`
+	Date     time.Time `json:"date"`
 }
 
-func partnersmaker(num int, gender string) (Couple, error) {
+func partnersmaker(tp int, gender string) (Couple, error) {
 	var err error
 	var couple Couple
 	var randnum2 int
+	var helper Student
+	today := time.Now()
+
 	students, err := db.FindStudents("active", gender)
 	if err != nil {
 		panic(err)
 	}
 
-	randnum := rand.Intn(len(students))
-	randnum2 = rand.Intn(len(students))
-
-	for randnum == randnum2 {
-		fmt.Println("This number is used " + strconv.Itoa(randnum2))
-		randnum2 = rand.Intn(len(students))
+	assigment, err := db.FindAssigment(Assigment{ID: tp})
+	if err != nil {
+		return couple, err
 	}
 
-	couple.InCharge = students[randnum]
-	couple.Helper = students[randnum2]
+	randnum := rand.Intn(len(students))
+	incharge := students[randnum]
 
-	return couple, err
+	if assigment[0].Participants > 1 {
+		randnum2 = rand.Intn(len(students))
+		helper = students[randnum2]
+		for randnum == randnum2 || incharge.LastPartner == helper.ID {
+			fmt.Println("This ID is no available" + strconv.Itoa(randnum2))
+			randnum2 = rand.Intn(len(students))
+			helper = students[randnum2]
+		}
+
+	}
+
+	couple.InCharge = incharge
+	couple.Helper = helper
+	couple.Date = today
+	couple.Type = assigment[0]
+
+	incharge.Last = today
+	incharge.LastPartner = helper.ID
+
+	helper.Last = today
+	helper.LastPartner = incharge.ID
+
+	//if err := db.UpdateStudent(incharge); err != nil {
+	//	return couple, err
+	//}
+
+	//if err := db.UpdateStudent(helper); err != nil {
+	//	return couple, err
+	//}
+
+	return couple, nil
 }

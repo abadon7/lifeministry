@@ -18,6 +18,10 @@ func InitDataBase() error {
 }
 
 func AddStudent(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Access-Control-Allow-Methods", "DELETE, POST, GET, OPTIONS,PUT")
+
 	decoder := json.NewDecoder(r.Body)
 
 	var newStudent []Student
@@ -39,6 +43,7 @@ func AddStudent(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 
 func GetStudents(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Access-Control-Allow-Origin", "*")
 	cellar, err := db.FindStudents("all", "all")
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
@@ -67,12 +72,16 @@ func GetStudent(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 }
 
 func UpdtStudent(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Access-Control-Allow-Methods", "DELETE, POST, GET, OPTIONS,PUT")
+
 	decoder := json.NewDecoder(r.Body)
 
 	var newStudent Student
 	err := decoder.Decode(&newStudent)
 	if err != nil {
-		http.Error(w, "error while parsing new student data: "+err.Error(), http.StatusBadRequest)
+		http.Error(w, "error while parsing update of student data: "+err.Error(), http.StatusBadRequest)
 		return
 	}
 
@@ -106,14 +115,14 @@ func DeleteStudent(w http.ResponseWriter, r *http.Request, ps httprouter.Params)
 func AddAssigment(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	decoder := json.NewDecoder(r.Body)
 
-	var newAssigment Assigment
+	var newAssigment []Assigment
 	err := decoder.Decode(&newAssigment)
 	if err != nil {
 		http.Error(w, "error while parsing new assigment data: "+err.Error(), http.StatusBadRequest)
 		return
 	}
 
-	if err := db.SaveAssigment(newAssigment); err != nil {
+	if err := db.SaveAssigment(newAssigment...); err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}

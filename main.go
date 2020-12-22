@@ -48,7 +48,6 @@ func getListenPort() (string, error) {
 	port := os.Getenv("PORT")
 	if port == "" {
 		return "", fmt.Errorf("$PORT not set")
-
 	}
 	return ":" + port, nil
 }
@@ -57,7 +56,6 @@ func main() {
 	port, err := getListenPort()
 	if err != nil {
 		log.Fatal(err)
-
 	}
 	fmt.Println("The server is on port " + port)
 	log.Fatal(http.ListenAndServe(port, router))

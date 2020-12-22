@@ -14,8 +14,9 @@ type Storage interface {
 	RemoveStudent(Student) error
 	FindStudents(string, string) ([]Student, error)
 
-	SaveAssigment(Assigment) error
+	SaveAssigment(...Assigment) error
 	FindAssigments() ([]Assigment, error)
+	FindAssigment(Assigment) ([]Assigment, error)
 
 	MakeMigrations() error
 }
