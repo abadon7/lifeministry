@@ -74,7 +74,6 @@ func GetStudent(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 func UpdtStudent(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	w.Header().Set("Content-Type", "application/json")
 	w.Header().Set("Access-Control-Allow-Origin", "*")
-	w.Header().Set("Access-Control-Allow-Methods", "DELETE, POST, GET, OPTIONS,PUT")
 
 	decoder := json.NewDecoder(r.Body)
 
@@ -113,6 +112,10 @@ func DeleteStudent(w http.ResponseWriter, r *http.Request, ps httprouter.Params)
 }
 
 func AddAssigment(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Access-Control-Allow-Methods", "DELETE, POST, GET, OPTIONS,PUT")
+
 	decoder := json.NewDecoder(r.Body)
 
 	var newAssigment []Assigment

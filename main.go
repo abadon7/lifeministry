@@ -7,6 +7,7 @@ import (
 	"os"
 
 	"github.com/julienschmidt/httprouter"
+	"github.com/rs/cors"
 )
 
 //const ServerAddr = ":8080"
@@ -28,11 +29,11 @@ func init() {
 	router.GET("/", welcome)
 	router.GET("/students", GetStudents)
 	router.GET("/students/:id", GetStudent)
-	router.GET("/assigments", GetAssigments)
+	router.GET("/assignments", GetAssigments)
 	router.GET("/partners", GetPartners)
 
 	router.POST("/students", AddStudent)
-	router.POST("/assigments", AddAssigment)
+	router.POST("/assignments", AddAssigment)
 
 	router.PUT("/students", UpdtStudent)
 
@@ -57,6 +58,13 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
+	_cors := cors.Options{
+		AllowedMethods: []string{"POST", "PUT", "OPTIONS", "GET"},
+		AllowedOrigins: []string{"*"},
+	}
+	handler := cors.New(_cors).Handler(router)
+
+	log.Fatal(http.ListenAndServe(port, handler))
 	fmt.Println("The server is on port " + port)
-	log.Fatal(http.ListenAndServe(port, router))
+	//log.Fatal(http.ListenAndServe(port, router))
 }
