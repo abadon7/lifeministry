@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"errors"
 	"fmt"
+	"strconv"
 
 	//"time"
 
@@ -65,6 +66,24 @@ func (s *StorageSQLite) MakeMigrations() error {
 		return err
 	}
 
+	qC := `CREATE TABLE IF NOT EXISTS schedules(
+		id INTEGER PRIMARY KEY AUTOINCREMENT,
+		data TEXT,
+		range TEXT
+	);`
+	if _, err := s.db.Exec(qC); err != nil {
+		return err
+	}
+
+	qD := `CREATE TABLE IF NOT EXISTS weeks(
+		id INTEGER PRIMARY KEY AUTOINCREMENT,
+		date TIMESTAMP DEFAULT DATETIME,
+		data TEXT
+	);`
+	if _, err := s.db.Exec(qD); err != nil {
+		return err
+	}
+
 	return nil
 }
 
@@ -100,9 +119,14 @@ func (s *StorageSQLite) FindStudents(active string, gender string) ([]Student, e
 	var tempUser Student
 
 	if active == "all" {
+
 		q := "SELECT * from students"
 
-		records, err := s.db.Query(q)
+		if gender != "all" {
+			q = "SELECT * FROM students WHERE gender = ?"
+		}
+
+		records, err := s.db.Query(q, gender)
 		if err != nil {
 			return students, err
 		}
@@ -117,7 +141,11 @@ func (s *StorageSQLite) FindStudents(active string, gender string) ([]Student, e
 	}
 
 	if active == "active" {
-		q2 := "SELECT * from students WHERE active = 1 and gender = ?"
+		q2 := "SELECT * from students WHERE active = 1"
+
+		if gender != "all" {
+			q2 = "SELECT * FROM students WHERE active = 1 and gender = ?"
+		}
 
 		records, err := s.db.Query(q2, gender)
 		if err != nil {
@@ -263,4 +291,56 @@ func (s *StorageSQLite) FindAssigment(criteria Assigment) ([]Assigment, error) {
 		return assigments, nil
 	}
 	return assigments, fmt.Errorf("No assigment id especified")
+}
+
+func (s *StorageSQLite) SaveSchedule(schedule Schedule) (Schedule, error) {
+	q := `INSERT INTO schedules (data,range) VALUES(?,?)`
+
+	// y evitar código malicioso.
+	//for _, schedule := range schedules {
+	stmt, err := s.db.Prepare(q)
+	if err != nil {
+		return schedule, err
+	}
+
+	defer stmt.Close()
+
+	r, err := stmt.Exec(schedule.Data, schedule.Range)
+	if err != nil {
+		return schedule, err
+	}
+	// Confirmamos que una fila fuera afectada, debido a que insertamos un
+	if i, err := r.RowsAffected(); err != nil || i != 1 {
+		return schedule, errors.New("ERROR: Se esperaba una fila afectada")
+	}
+	lid, err := r.LastInsertId()
+
+	schedule.ID = lid
+
+	//}
+	// Si llegamos a este punto consideramos que todo el proceso fue exitoso
+
+	fmt.Println("This is the las id saved " + strconv.FormatInt(lid, 10))
+	return schedule, nil
+}
+
+func (s *StorageSQLite) FindSchedules() ([]Schedule, error) {
+	var schedules []Schedule
+	var tempSchedule Schedule
+
+	q := "SELECT * from schedules"
+
+	records, err := s.db.Query(q)
+	if err != nil {
+		return schedules, err
+	}
+
+	defer records.Close()
+
+	for records.Next() {
+		records.Scan(&tempSchedule.ID, &tempSchedule.Data, &tempSchedule.Range)
+		schedules = append(schedules, tempSchedule)
+	}
+
+	return schedules, nil
 }

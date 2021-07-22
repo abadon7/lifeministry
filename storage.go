@@ -18,6 +18,9 @@ type Storage interface {
 	FindAssigments() ([]Assigment, error)
 	FindAssigment(Assigment) ([]Assigment, error)
 
+	SaveSchedule(Schedule) (Schedule, error)
+	FindSchedules() ([]Schedule, error)
+
 	MakeMigrations() error
 }
 

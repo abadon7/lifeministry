@@ -31,9 +31,11 @@ func init() {
 	router.GET("/students/:id", GetStudent)
 	router.GET("/assignments", GetAssigments)
 	router.GET("/partners", GetPartners)
+	router.GET("/schedules", GetSchedules)
 
 	router.POST("/students", AddStudent)
 	router.POST("/assignments", AddAssigment)
+	router.POST("/schedules", AddSchedule)
 
 	router.PUT("/students", UpdtStudent)
 
@@ -64,7 +66,7 @@ func main() {
 	}
 	handler := cors.New(_cors).Handler(router)
 
-	log.Fatal(http.ListenAndServe(port, handler))
 	fmt.Println("The server is on port " + port)
+	log.Fatal(http.ListenAndServe(port, handler))
 	//log.Fatal(http.ListenAndServe(port, router))
 }

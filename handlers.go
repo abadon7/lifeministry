@@ -41,14 +41,31 @@ func AddStudent(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	return
 }
 
-func GetStudents(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+func GetStudents(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	w.Header().Set("Content-Type", "application/json")
 	w.Header().Set("Access-Control-Allow-Origin", "*")
-	cellar, err := db.FindStudents("all", "all")
+
+	active := r.URL.Query().Get("active")
+	gender := r.URL.Query().Get("gender")
+
+	fmt.Println("active = " + active)
+	fmt.Println("gender = " + gender)
+
+	if active == "" {
+		active = "all"
+	}
+
+	if gender == "" {
+		gender = "all"
+	}
+
+	cellar, err := db.FindStudents(active, gender)
+
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
+
 	json.NewEncoder(w).Encode(cellar)
 	return
 }
@@ -156,13 +173,51 @@ func GetPartners(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	}
 
 	gender := r.URL.Query().Get("gender")
+	date := r.URL.Query().Get("date")
 
-	couple, err := partnersmaker(num, gender)
+	couple, err := partnersmaker(num, gender, date)
 
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
 	json.NewEncoder(w).Encode(couple)
+	return
+}
+
+func AddSchedule(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Access-Control-Allow-Methods", "DELETE, POST, GET, OPTIONS,PUT")
+
+	decoder := json.NewDecoder(r.Body)
+
+	var newSchedule Schedule
+	err := decoder.Decode(&newSchedule)
+	if err != nil {
+		http.Error(w, "error while parsing new Schedule data: "+err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	scheduleInfo, err := db.SaveSchedule(newSchedule)
+
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(scheduleInfo)
+	return
+}
+
+func GetSchedules(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+	w.Header().Set("Content-Type", "application/json")
+	cellar, err := db.FindSchedules()
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+	json.NewEncoder(w).Encode(cellar)
 	return
 }

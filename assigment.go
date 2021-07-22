@@ -6,3 +6,9 @@ type Assigment struct {
 	Type         string `json:"type"`
 	Participants int    `json:"participants"`
 }
+
+type Schedule struct {
+	ID    int64  `json:"id"`
+	Data  string `json:"data"`
+	Range string `json:"range"`
+}
