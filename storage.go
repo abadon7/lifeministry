@@ -20,6 +20,7 @@ type Storage interface {
 
 	SaveSchedule(Schedule) (Schedule, error)
 	FindSchedules() ([]Schedule, error)
+	FindSchedule(int) (Schedule, error)
 
 	MakeMigrations() error
 }

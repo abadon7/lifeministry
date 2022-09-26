@@ -32,6 +32,7 @@ func init() {
 	router.GET("/assignments", GetAssigments)
 	router.GET("/partners", GetPartners)
 	router.GET("/schedules", GetSchedules)
+	router.GET("/schedules/:id", GetSchedule)
 
 	router.POST("/students", AddStudent)
 	router.POST("/assignments", AddAssigment)
@@ -44,7 +45,7 @@ func init() {
 }
 
 func welcome(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
-	fmt.Fprintf(w, "Welcome to the system")
+	fmt.Fprintf(w, "Welcome to the System")
 }
 
 func getListenPort() (string, error) {

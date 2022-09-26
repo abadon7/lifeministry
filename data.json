@@ -1,0 +1,518 @@
+[
+  {
+    "id": 7,
+    "data": {
+  "2022-10-03T05:00:00Z": [{
+    "incharge": {
+      "id": 9,
+      "name": "Dairo C Chávez ",
+      "gender": "m",
+      "cel": 0,
+      "active": true,
+      "notes": "",
+      "last": "2022-10-03T05:00:00Z",
+      "lastpartner": 0
+    },
+    "helper": {
+      "id": 0,
+      "name": "",
+      "gender": "",
+      "cel": 0,
+      "active": false,
+      "notes": "",
+      "last": "2022-10-03T05:00:00Z",
+      "lastpartner": 9
+    },
+    "assigmenttype": {
+      "id": 1,
+      "name": "Lectura",
+      "type": "school",
+      "participants": 1
+    },
+    "date": "2022-10-03T05:00:00Z"
+  }, {
+    "incharge": {
+      "id": 20,
+      "name": "Celia Guardo ",
+      "gender": "f",
+      "cel": 0,
+      "active": true,
+      "notes": "",
+      "last": "2022-10-03T05:00:00Z",
+      "lastpartner": 50
+    },
+    "helper": {
+      "id": 50,
+      "name": "Ana Echeverri",
+      "gender": "f",
+      "cel": 0,
+      "active": true,
+      "notes": "",
+      "last": "2022-10-03T05:00:00Z",
+      "lastpartner": 20
+    },
+    "assigmenttype": {
+      "id": 5,
+      "name": "Primera Conversación",
+      "type": "school",
+      "participants": 2
+    },
+    "date": "2022-10-03T05:00:00Z"
+  }, {
+    "incharge": {
+      "id": 6,
+      "name": "Samuel Cárdenas ",
+      "gender": "m",
+      "cel": 0,
+      "active": true,
+      "notes": "",
+      "last": "2022-10-03T05:00:00Z",
+      "lastpartner": 0
+    },
+    "helper": {
+      "id": 0,
+      "name": "",
+      "gender": "",
+      "cel": 0,
+      "active": false,
+      "notes": "",
+      "last": "2022-10-03T05:00:00Z",
+      "lastpartner": 6
+    },
+    "assigmenttype": {
+      "id": 2,
+      "name": "Discurso",
+      "type": "school",
+      "participants": 1
+    },
+    "date": "2022-10-03T05:00:00Z"
+  }],
+  "2022-10-10T05:00:00Z": [{
+    "incharge": {
+      "id": 41,
+      "name": "Máximo Villalobos",
+      "gender": "m",
+      "cel": 0,
+      "active": true,
+      "notes": "",
+      "last": "2022-10-10T05:00:00Z",
+      "lastpartner": 0
+    },
+    "helper": {
+      "id": 0,
+      "name": "",
+      "gender": "",
+      "cel": 0,
+      "active": false,
+      "notes": "",
+      "last": "2022-10-10T05:00:00Z",
+      "lastpartner": 41
+    },
+    "assigmenttype": {
+      "id": 1,
+      "name": "Lectura",
+      "type": "school",
+      "participants": 1
+    },
+    "date": "2022-10-10T05:00:00Z"
+  }, {
+    "incharge": {
+      "id": 42,
+      "name": "Sara Villalobos",
+      "gender": "f",
+      "cel": 0,
+      "active": true,
+      "notes": "",
+      "last": "2022-10-10T05:00:00Z",
+      "lastpartner": 17
+    },
+    "helper": {
+      "id": 17,
+      "name": "Abad García ",
+      "gender": "f",
+      "cel": 312545,
+      "active": true,
+      "notes": "",
+      "last": "2022-10-10T05:00:00Z",
+      "lastpartner": 42
+    },
+    "assigmenttype": {
+      "id": 3,
+      "name": "Revisita",
+      "type": "school",
+      "participants": 2
+    },
+    "date": "2022-10-10T05:00:00Z"
+  }, {
+    "incharge": {
+      "id": 29,
+      "name": "Angélica Montesinos",
+      "gender": "f",
+      "cel": 0,
+      "active": true,
+      "notes": "",
+      "last": "2022-10-10T05:00:00Z",
+      "lastpartner": 35
+    },
+    "helper": {
+      "id": 35,
+      "name": "Rosmira Rodríguez",
+      "gender": "f",
+      "cel": 0,
+      "active": true,
+      "notes": "",
+      "last": "2022-10-10T05:00:00Z",
+      "lastpartner": 29
+    },
+    "assigmenttype": {
+      "id": 4,
+      "name": "Curso",
+      "type": "school",
+      "participants": 2
+    },
+    "date": "2022-10-10T05:00:00Z"
+  }],
+  "2022-10-17T05:00:00Z": [{
+    "incharge": {
+      "id": 11,
+      "name": "Pablo Corpus ",
+      "gender": "m",
+      "cel": 0,
+      "active": true,
+      "notes": "",
+      "last": "2022-10-17T05:00:00Z",
+      "lastpartner": 0
+    },
+    "helper": {
+      "id": 0,
+      "name": "",
+      "gender": "",
+      "cel": 0,
+      "active": false,
+      "notes": "",
+      "last": "2022-10-17T05:00:00Z",
+      "lastpartner": 11
+    },
+    "assigmenttype": {
+      "id": 1,
+      "name": "Lectura",
+      "type": "school",
+      "participants": 1
+    },
+    "date": "2022-10-17T05:00:00Z"
+  }, {
+    "incharge": {
+      "id": 7,
+      "name": "Yesenia Cárdenas",
+      "gender": "f",
+      "cel": 0,
+      "active": true,
+      "notes": "",
+      "last": "2022-10-17T05:00:00Z",
+      "lastpartner": 19
+    },
+    "helper": {
+      "id": 19,
+      "name": "Brenda Guardo ",
+      "gender": "f",
+      "cel": 0,
+      "active": true,
+      "notes": "",
+      "last": "2022-10-17T05:00:00Z",
+      "lastpartner": 7
+    },
+    "assigmenttype": {
+      "id": 5,
+      "name": "Primera Conversación",
+      "type": "school",
+      "participants": 2
+    },
+    "date": "2022-10-17T05:00:00Z"
+  }, {
+    "incharge": {
+      "id": 31,
+      "name": "Maryonis Pacheco",
+      "gender": "f",
+      "cel": 0,
+      "active": true,
+      "notes": "",
+      "last": "2022-10-17T05:00:00Z",
+      "lastpartner": 34
+    },
+    "helper": {
+      "id": 34,
+      "name": "Katerin Rincón",
+      "gender": "f",
+      "cel": 0,
+      "active": true,
+      "notes": "",
+      "last": "2022-10-17T05:00:00Z",
+      "lastpartner": 31
+    },
+    "assigmenttype": {
+      "id": 3,
+      "name": "Revisita",
+      "type": "school",
+      "participants": 2
+    },
+    "date": "2022-10-17T05:00:00Z"
+  }, {
+    "incharge": {
+      "id": 11,
+      "name": "Pablo Corpus ",
+      "gender": "m",
+      "cel": 0,
+      "active": true,
+      "notes": "",
+      "last": "2022-10-17T05:00:00Z",
+      "lastpartner": 0
+    },
+    "helper": {
+      "id": 0,
+      "name": "",
+      "gender": "",
+      "cel": 0,
+      "active": false,
+      "notes": "",
+      "last": "2022-10-17T05:00:00Z",
+      "lastpartner": 11
+    },
+    "assigmenttype": {
+      "id": 2,
+      "name": "Discurso",
+      "type": "school",
+      "participants": 1
+    },
+    "date": "2022-10-17T05:00:00Z"
+  }],
+  "2022-10-24T05:00:00Z": [{
+    "incharge": {
+      "id": 24,
+      "name": "Eduardo Jaller ",
+      "gender": "m",
+      "cel": 0,
+      "active": true,
+      "notes": "",
+      "last": "2022-10-24T05:00:00Z",
+      "lastpartner": 0
+    },
+    "helper": {
+      "id": 0,
+      "name": "",
+      "gender": "",
+      "cel": 0,
+      "active": false,
+      "notes": "",
+      "last": "2022-10-24T05:00:00Z",
+      "lastpartner": 24
+    },
+    "assigmenttype": {
+      "id": 1,
+      "name": "Lectura",
+      "type": "school",
+      "participants": 1
+    },
+    "date": "2022-10-24T05:00:00Z"
+  }, {
+    "incharge": {
+      "id": 23,
+      "name": "Marley Jaller ",
+      "gender": "f",
+      "cel": 0,
+      "active": true,
+      "notes": "",
+      "last": "2022-10-24T05:00:00Z",
+      "lastpartner": 22
+    },
+    "helper": {
+      "id": 22,
+      "name": "Eneida Hoyos ",
+      "gender": "f",
+      "cel": 0,
+      "active": true,
+      "notes": "",
+      "last": "2022-10-24T05:00:00Z",
+      "lastpartner": 23
+    },
+    "assigmenttype": {
+      "id": 5,
+      "name": "Primera Conversación",
+      "type": "school",
+      "participants": 2
+    },
+    "date": "2022-10-24T05:00:00Z"
+  }, {
+    "incharge": {
+      "id": 25,
+      "name": "Salma Jaller ",
+      "gender": "f",
+      "cel": 0,
+      "active": true,
+      "notes": "",
+      "last": "2022-10-24T05:00:00Z",
+      "lastpartner": 15
+    },
+    "helper": {
+      "id": 15,
+      "name": "Jael Galván ",
+      "gender": "f",
+      "cel": 0,
+      "active": true,
+      "notes": "",
+      "last": "2022-10-24T05:00:00Z",
+      "lastpartner": 25
+    },
+    "assigmenttype": {
+      "id": 3,
+      "name": "Revisita",
+      "type": "school",
+      "participants": 2
+    },
+    "date": "2022-10-24T05:00:00Z"
+  }, {
+    "incharge": {
+      "id": 21,
+      "name": "Oleida Guzmán ",
+      "gender": "f",
+      "cel": 0,
+      "active": true,
+      "notes": "",
+      "last": "2022-10-24T05:00:00Z",
+      "lastpartner": 19
+    },
+    "helper": {
+      "id": 19,
+      "name": "Brenda Guardo ",
+      "gender": "f",
+      "cel": 0,
+      "active": true,
+      "notes": "",
+      "last": "2022-10-24T05:00:00Z",
+      "lastpartner": 21
+    },
+    "assigmenttype": {
+      "id": 4,
+      "name": "Curso",
+      "type": "school",
+      "participants": 2
+    },
+    "date": "2022-10-24T05:00:00Z"
+  }],
+  "2022-10-31T05:00:00Z": [{
+    "incharge": {
+      "id": 16,
+      "name": "Nelson Galvis Galván ",
+      "gender": "m",
+      "cel": 0,
+      "active": true,
+      "notes": "",
+      "last": "2022-10-31T05:00:00Z",
+      "lastpartner": 0
+    },
+    "helper": {
+      "id": 0,
+      "name": "",
+      "gender": "",
+      "cel": 0,
+      "active": false,
+      "notes": "",
+      "last": "2022-10-31T05:00:00Z",
+      "lastpartner": 16
+    },
+    "assigmenttype": {
+      "id": 1,
+      "name": "Lectura",
+      "type": "school",
+      "participants": 1
+    },
+    "date": "2022-10-31T05:00:00Z"
+  }, {
+    "incharge": {
+      "id": 2,
+      "name": "Kelly Arrieta ",
+      "gender": "f",
+      "cel": 0,
+      "active": true,
+      "notes": "",
+      "last": "2022-10-31T05:00:00Z",
+      "lastpartner": 28
+    },
+    "helper": {
+      "id": 28,
+      "name": "Isabel Manjarrés",
+      "gender": "f",
+      "cel": 0,
+      "active": true,
+      "notes": "",
+      "last": "2022-10-31T05:00:00Z",
+      "lastpartner": 2
+    },
+    "assigmenttype": {
+      "id": 5,
+      "name": "Primera Conversación",
+      "type": "school",
+      "participants": 2
+    },
+    "date": "2022-10-31T05:00:00Z"
+  }, {
+    "incharge": {
+      "id": 10,
+      "name": "Mary Cielo Corpus ",
+      "gender": "f",
+      "cel": 0,
+      "active": true,
+      "notes": "",
+      "last": "2022-10-31T05:00:00Z",
+      "lastpartner": 28
+    },
+    "helper": {
+      "id": 28,
+      "name": "Isabel Manjarrés",
+      "gender": "f",
+      "cel": 0,
+      "active": true,
+      "notes": "",
+      "last": "2022-10-31T05:00:00Z",
+      "lastpartner": 10
+    },
+    "assigmenttype": {
+      "id": 3,
+      "name": "Revisita",
+      "type": "school",
+      "participants": 2
+    },
+    "date": "2022-10-31T05:00:00Z"
+  }, {
+    "incharge": {
+      "id": 14,
+      "name": "Iván Galván ",
+      "gender": "m",
+      "cel": 0,
+      "active": true,
+      "notes": "",
+      "last": "2022-10-31T05:00:00Z",
+      "lastpartner": 0
+    },
+    "helper": {
+      "id": 0,
+      "name": "",
+      "gender": "",
+      "cel": 0,
+      "active": false,
+      "notes": "",
+      "last": "2022-10-31T05:00:00Z",
+      "lastpartner": 14
+    },
+    "assigmenttype": {
+      "id": 2,
+      "name": "Discurso",
+      "type": "school",
+      "participants": 1
+    },
+    "date": "2022-10-31T05:00:00Z"
+  }]
+}
+      ,
+    "range": "1/3/2022-1/31/2022"
+  }
+]

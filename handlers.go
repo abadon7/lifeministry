@@ -221,3 +221,19 @@ func GetSchedules(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	json.NewEncoder(w).Encode(cellar)
 	return
 }
+
+func GetSchedule(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
+	ID, err := strconv.Atoi(ps.ByName("id"))
+	if err != nil {
+		http.Error(w, fmt.Sprintf("%s is not a valid schedule id, it must be a number", ps.ByName("id")), http.StatusBadRequest)
+		return
+	}
+	fmt.Println("Schedule # " + strconv.Itoa(ID))
+	result, err := db.FindSchedule(ID)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+	json.NewEncoder(w).Encode(result)
+	return
+}

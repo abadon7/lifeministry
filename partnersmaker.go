@@ -7,13 +7,6 @@ import (
 	"time"
 )
 
-type Couple struct {
-	InCharge Student   `json:"incharge"`
-	Helper   Student   `json:"helper"`
-	Type     Assigment `json:"assigmenttype"`
-	Date     time.Time `json:"date"`
-}
-
 func partnersmaker(tp int, gender string, date string) (Couple, error) {
 	var err error
 	var couple Couple

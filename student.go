@@ -12,3 +12,10 @@ type Student struct {
 	Last        time.Time `json:"last"`
 	LastPartner int       `json:"lastpartner"`
 }
+
+type Couple struct {
+	InCharge Student   `json:"incharge"`
+	Helper   Student   `json:"helper"`
+	Type     Assigment `json:"assigmenttype"`
+	Date     time.Time `json:"date"`
+}

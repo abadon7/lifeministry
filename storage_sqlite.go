@@ -344,3 +344,21 @@ func (s *StorageSQLite) FindSchedules() ([]Schedule, error) {
 
 	return schedules, nil
 }
+
+func (s *StorageSQLite) FindSchedule(criteria int) (Schedule, error) {
+
+	fmt.Println("Consulting schedule" + strconv.Itoa(criteria))
+	var schedule Schedule
+	q := "SELECT * from schedules WHERE id=?"
+
+	if criteria != 0 {
+		err := s.db.QueryRow(q, criteria).Scan(&schedule.ID, &schedule.Data, &schedule.Range)
+		if err != nil {
+			return schedule, err
+		}
+
+		return schedule, nil
+
+	}
+	return schedule, fmt.Errorf("No assigment id especified")
+}
