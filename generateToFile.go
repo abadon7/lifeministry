@@ -10,9 +10,10 @@ import (
 	"github.com/nguyenthenguyen/docx"
 )
 
-func generateFile(schedules []Schedule, scheduleKeys []string, monthInfo GroupWeekInfo) {
+func generateFile(schedules []Schedule, scheduleKeys []string, monthInfo GroupWeekInfo) string {
 	// Read from docx file
 	r, err := docx.ReadDocxFile("./S-140-S_3.docx")
+	fileName := "./new_result_1.docx"
 	// Or read from memory
 	// r, err := docx.ReadDocxFromMemory(data io.ReaderAt, size int64)
 	if err != nil {
@@ -114,8 +115,7 @@ func generateFile(schedules []Schedule, scheduleKeys []string, monthInfo GroupWe
 				docx1.Replace(assigNumber, ParticipantsNames, 1)
 			}
 		}
-
-		docx1.WriteToFile("./new_result_1.docx")
+		docx1.WriteToFile(fileName)
 		r.Close()
 		//for k, v := range schedules[s].Data.string {
 		//	fmt.Printf("Key: %d : | Value : %v\n", k, v)
@@ -128,4 +128,5 @@ func generateFile(schedules []Schedule, scheduleKeys []string, monthInfo GroupWe
 		//		}
 		//		fmt.Printf("'%v'\n", weeks)
 	}
+	return fileName
 }

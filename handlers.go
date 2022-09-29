@@ -237,3 +237,35 @@ func GetSchedule(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	json.NewEncoder(w).Encode(result)
 	return
 }
+
+func GetScheduleToFile(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
+	ID, err := strconv.Atoi(ps.ByName("id"))
+	if err != nil {
+		http.Error(w, fmt.Sprintf("%s is not a valid schedule id, it must be a number", ps.ByName("id")), http.StatusBadRequest)
+		return
+	}
+	fmt.Println("Schedule # " + strconv.Itoa(ID))
+	result := generator(ID)
+	//result := "new_result_1.docx"
+	//	result, err := db.FindSchedule(ID)
+	//	if err != nil {
+	//		http.Error(w, err.Error(), http.StatusBadRequest)
+	//		return
+	//	}
+	//fileBytes, err := ioutil.ReadFile(result)
+	//if err != nil {
+	//	panic(err)
+	//}
+	//w.WriteHeader(http.StatusOK)
+	w.Header().Set("Content-Disposition", "attachment; filename="+strconv.Quote("Programa.docx"))
+	w.Header().Set("Content-Type", "application/octet-stream")
+	//w.Header().Add("Content-Description", "File Transfer")
+	//w.Header().Add("Content-Type", "application/octet-stream")
+	//w.Header().Add("Content-Transfer-Encoding", "binary")
+	//w.Header().Add("Expires", "0")
+	//w.Header().Add("Cache-Control", "must-revalidate")
+	//w.Header().Add("Pragma", "public")
+	//	w.Write(fileBytes)
+	http.ServeFile(w, r, result)
+	return
+}

@@ -33,6 +33,7 @@ func init() {
 	router.GET("/partners", GetPartners)
 	router.GET("/schedules", GetSchedules)
 	router.GET("/schedules/:id", GetSchedule)
+	router.GET("/getschedule/:id", GetScheduleToFile)
 
 	router.POST("/students", AddStudent)
 	router.POST("/assignments", AddAssigment)

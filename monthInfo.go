@@ -48,8 +48,8 @@ func getMonthInfo(dateKeys WeeksKeys) GroupWeekInfo {
 			weekinfo := WeekInfo{}
 			weekinfo.Date = e.ChildText("#p1")
 			weekinfo.Text = e.ChildText("#p2")
-			weekinfo.Song = e.ChildText("#p3")
-			weekinfo.Treasures = e.ChildText("#p6")
+			weekinfo.Song = e.ChildText(".bodyTxt #p3")
+			weekinfo.Treasures = e.ChildText(".bodyTxt #p6")
 			//fmt.Println(weekinfo.Date, weekinfo.Text)
 			//fmt.Println(e.Text)
 
