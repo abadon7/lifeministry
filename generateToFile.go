@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"strconv"
+	"strings"
 	"time"
 
 	"github.com/nguyenthenguyen/docx"
@@ -86,6 +87,7 @@ func generateFile(schedules []Schedule, scheduleKeys []string, monthInfo GroupWe
 			currentText := "[LECTURA" + strconv.Itoa(SchDate) + "]"
 			currentTreasures := "[TESOROS" + strconv.Itoa(SchDate) + "]"
 			currentSong1 := "[Número" + strconv.Itoa(SchDate) + "]"
+			currentSong2 := "[Número" + strconv.Itoa(SchDate) + "_2]"
 			fmt.Println(currentDate)
 			docx1.Replace(currentDate, WDateLabel, -1)
 			fmt.Println(currentText, monthInfo[ws].Text)
@@ -93,6 +95,7 @@ func generateFile(schedules []Schedule, scheduleKeys []string, monthInfo GroupWe
 			fmt.Println(currentTreasures, monthInfo[ws].Treasures)
 			docx1.Replace(currentTreasures, monthInfo[ws].Treasures, -1)
 			docx1.Replace(currentSong1, monthInfo[ws].Song, -1)
+			docx1.Replace(currentSong2, strings.TrimSuffix(monthInfo[ws].Living[0], "\n"), -1)
 
 			var weekSchedules Week
 			errw := json.Unmarshal([]byte(schedules[s].Data), &weekSchedules)
