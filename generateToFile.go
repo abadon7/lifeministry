@@ -13,7 +13,8 @@ import (
 
 func generateFile(schedules []Schedule, scheduleKeys []string, monthInfo GroupWeekInfo) string {
 	// Read from docx file
-	r, err := docx.ReadDocxFile("./S-140-S_3.docx")
+	// r, err := docx.ReadDocxFile("./S-140-S_3.docx")
+	r, err := docx.ReadDocxFile("./S-140-S_3_old3.docx")
 	fileName := "./new_result_1.docx"
 	// Or read from memory
 	// r, err := docx.ReadDocxFromMemory(data io.ReaderAt, size int64)
@@ -21,18 +22,31 @@ func generateFile(schedules []Schedule, scheduleKeys []string, monthInfo GroupWe
 		panic(err)
 	}
 
-	meses := [12]string{"ENERO", "FEBRERO", "MARZO", "ABRIL", "MAYO", "JUNIO", "JULIO", "AGOSTO", "SEPTIEMBRE", "OCTUBRE", "NOVIEMBRE", "DICIEMBRE"}
+	meses := [12]string{
+		"ENERO",
+		"FEBRERO",
+		"MARZO",
+		"ABRIL",
+		"MAYO",
+		"JUNIO",
+		"JULIO",
+		"AGOSTO",
+		"SEPTIEMBRE",
+		"OCTUBRE",
+		"NOVIEMBRE",
+		"DICIEMBRE",
+	}
 	docx1 := r.Editable()
 	// Replace like https://golang.org/pkg/strings/#Replace
 	//	docx1.Replace("[Asigna1]", "Henry 1", -1)
 	//	docx1.Replace("[Asigna2]", "Henry 2", -1)
 	//	docx1.Replace("[FECHA1]", "Nueva fecha", -1)
 	docx1.Replace("[NOMBRE DE LA CONGREGACIÓN]", "NECHÍ", -1)
-	//JSON exapmple
-	//filePath := "./data.json"
-	//fmt.Printf("// reading file %s\n", filePath)
-	//file, err1 := ioutil.ReadFile(filePath)
-	//if err1 != nil {
+	// JSON exapmple
+	// filePath := "./data.json"
+	// fmt.Printf("// reading file %s\n", filePath)
+	// file, err1 := ioutil.ReadFile(filePath)
+	// if err1 != nil {
 
 	//	fmt.Printf("// error reading file %s\n", filePath)
 
@@ -54,22 +68,22 @@ func generateFile(schedules []Schedule, scheduleKeys []string, monthInfo GroupWe
 	var WDateLabel string
 	fmt.Println("// loop over array of structs of schedules")
 	for s := range schedules {
-		//var weeks Week
+		// var weeks Week
 		fmt.Printf("The ship '%d' first appeared on '%v'\n", schedules[s].ID, schedules[s].Range)
-		//scheduleKeys := getScheduleKeys(schedules[s].Data)
-		//scheduleKeys := make([]string, 0, len(schedules[s].Data))
+		// scheduleKeys := getScheduleKeys(schedules[s].Data)
+		// scheduleKeys := make([]string, 0, len(schedules[s].Data))
 		//	for sk := range schedules[s].Data {
 		//		scheduleKeys = append(scheduleKeys, sk)
 		//	}
 		//	fmt.Println(scheduleKeys)
 		//	sort.Strings(scheduleKeys)
-		//monthInfo := getMonthInfo(scheduleKeys)
+		// monthInfo := getMonthInfo(scheduleKeys)
 		//	fmt.Println(scheduleKeys)
 
-		//for k, ws := range schedules[s].Data {
+		// for k, ws := range schedules[s].Data {
 		for k, ws := range scheduleKeys {
 			fmt.Printf("Key: '%d' : Data: '%v'\n", k, ws)
-			//SchDate++
+			// SchDate++
 			SchDate = k + 1
 			weekRange, err := time.Parse(time.RFC3339, ws)
 			if err != nil {
@@ -79,24 +93,53 @@ func generateFile(schedules []Schedule, scheduleKeys []string, monthInfo GroupWe
 			fnlDay := weekRange.AddDate(0, 0, 6)
 			WDateLabel = strconv.Itoa(fstDay) + " A " + strconv.Itoa(fnlDay.Day()) + " DE " + meses[int(fnlDay.Month())-1]
 			if fnlDay.Day() < fstDay {
-				WDateLabel = strconv.Itoa(fstDay) + " DE " + meses[int(weekRange.Month())-1] + " A " + strconv.Itoa(fnlDay.Day()) + " DE " + meses[int(fnlDay.Month())-1]
+				WDateLabel = strconv.Itoa(
+					fstDay,
+				) + " DE " + meses[int(weekRange.Month())-1] + " A " + strconv.Itoa(
+					fnlDay.Day(),
+				) + " DE " + meses[int(fnlDay.Month())-1]
 			}
 			fmt.Println(weekRange.Day(), weekRange.AddDate(0, 0, 6).Day())
-			fmt.Printf("start: '%v' '%v' : end: '%v' '%v'\n", weekRange.Day(), weekRange.Month(), weekRange.AddDate(0, 0, 6).Day(), weekRange.AddDate(0, 0, 6).Month())
+			fmt.Printf(
+				"start: '%v' '%v' : end: '%v' '%v'\n",
+				weekRange.Day(),
+				weekRange.Month(),
+				weekRange.AddDate(0, 0, 6).Day(),
+				weekRange.AddDate(0, 0, 6).Month(),
+			)
+
 			currentDate := "[FECHA" + strconv.Itoa(SchDate) + "]"
 			currentText := "[LECTURA" + strconv.Itoa(SchDate) + "]"
 			currentTreasures := "[TESOROS" + strconv.Itoa(SchDate) + "]"
 			currentSong1 := "[Número" + strconv.Itoa(SchDate) + "]"
 			currentSong2 := "[Número" + strconv.Itoa(SchDate) + "_2]"
+			currentSong3 := "[Número" + strconv.Itoa(SchDate) + "_3]"
+			livingTitle := "[Título" + strconv.Itoa(SchDate) + "_"
+			livinArray := monthInfo[ws].Living
+			livingLen := len(livinArray)
+
 			fmt.Println(currentDate)
 			docx1.Replace(currentDate, WDateLabel, -1)
 			fmt.Println(currentText, monthInfo[ws].Text)
 			docx1.Replace(currentText, monthInfo[ws].Text, -1)
 			fmt.Println(currentTreasures, monthInfo[ws].Treasures)
 			docx1.Replace(currentTreasures, monthInfo[ws].Treasures, -1)
-			docx1.Replace(currentSong1, monthInfo[ws].Song, -1)
-			docx1.Replace(currentSong2, strings.TrimSuffix(monthInfo[ws].Living[0], "\n"), -1)
+			docx1.Replace(currentSong1, strings.Replace(monthInfo[ws].Song, "Canción", "", -1), -1)
+			docx1.Replace(
+				currentSong2,
+				strings.Replace(strings.TrimSuffix(livinArray[0], "\n"), "Canción", "", -1),
+				-1,
+			)
+			docx1.Replace(
+				currentSong3,
+				strings.Replace(strings.TrimSuffix(livinArray[livingLen-1], "\n"), "Canción", "", -1),
+				-1,
+			)
 
+			docx1.Replace(livingTitle+"1]", strings.Split(livinArray[1], ":")[0], -1)
+			if livingLen > 5 {
+				docx1.Replace(livingTitle+"2]", livinArray[2], -1)
+			}
 			var weekSchedules Week
 			errw := json.Unmarshal([]byte(schedules[s].Data), &weekSchedules)
 			if errw != nil {
@@ -114,8 +157,10 @@ func generateFile(schedules []Schedule, scheduleKeys []string, monthInfo GroupWe
 					ParticipantsNames = w.InCharge.Name + "/" + w.Helper.Name
 				}
 				assigNumber := "[Asigna" + strconv.Itoa(CurrentAssigNumber) + "]"
+				titleNumber := "[Título" + strconv.Itoa(CurrentAssigNumber) + "]"
 				fmt.Println(assigNumber)
 				docx1.Replace(assigNumber, ParticipantsNames, 1)
+				docx1.Replace(titleNumber, w.Type.Name, 1)
 			}
 		}
 		docx1.WriteToFile(fileName)
