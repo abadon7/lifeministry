@@ -41,7 +41,9 @@ func generateFile(schedules []Schedule, scheduleKeys []string, monthInfo GroupWe
 	//	docx1.Replace("[Asigna1]", "Henry 1", -1)
 	//	docx1.Replace("[Asigna2]", "Henry 2", -1)
 	//	docx1.Replace("[FECHA1]", "Nueva fecha", -1)
-	docx1.Replace("[NOMBRE DE LA CONGREGACIÓN]", "NECHÍ", -1)
+	if err := docx1.Replace("[NOMBRE DE LA CONGREGACIÓN]", "NECHÍ", -1); err != nil {
+		log.Fatal(err)
+	}
 	// JSON exapmple
 	// filePath := "./data.json"
 	// fmt.Printf("// reading file %s\n", filePath)
@@ -81,6 +83,7 @@ func generateFile(schedules []Schedule, scheduleKeys []string, monthInfo GroupWe
 		//	fmt.Println(scheduleKeys)
 
 		// for k, ws := range schedules[s].Data {
+	start:
 		for k, ws := range scheduleKeys {
 			fmt.Printf("Key: '%d' : Data: '%v'\n", k, ws)
 			// SchDate++
@@ -117,6 +120,9 @@ func generateFile(schedules []Schedule, scheduleKeys []string, monthInfo GroupWe
 			livingTitle := "[Título" + strconv.Itoa(SchDate) + "_"
 			livinArray := monthInfo[ws].Living
 			livingLen := len(livinArray)
+			if livingLen < 1 {
+				continue start
+			}
 
 			fmt.Println(currentDate)
 			docx1.Replace(currentDate, WDateLabel, -1)

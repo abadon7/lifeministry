@@ -13,7 +13,7 @@ import (
 //	fmt.Println("vim-go")
 //}
 
-func getWeekNumber(date string) int {
+func getWeekNumber(date string) [2]int {
 	fullDate, err := time.Parse(time.RFC3339, date)
 	if err != nil {
 		fmt.Println("Could not parse time:", err)
@@ -21,7 +21,7 @@ func getWeekNumber(date string) int {
 	fmt.Println(fullDate.Format(time.RFC3339))
 	year, week := fullDate.ISOWeek()
 	fmt.Println(year, week)
-	return week
+	return [2]int{week, year}
 }
 
 func getMonthInfo(dateKeys WeeksKeys) GroupWeekInfo {
@@ -29,7 +29,10 @@ func getMonthInfo(dateKeys WeeksKeys) GroupWeekInfo {
 	//KeysData := [5]string{"2022-01-03T05:00:00Z", "2022-01-10T05:00:00Z", "2022-01-17T05:00:00Z", "2022-01-24T05:00:00Z", "2022-01-31T05:00:00Z"}
 	//	keysData := dateKeys
 	//numWeek := 20
-	numWeek := getWeekNumber(dateKeys[0]) - 1
+
+	DateInfo := getWeekNumber(dateKeys[0])
+	numWeek := DateInfo[0] - 1
+	currentYear := DateInfo[1]
 	//var weeksKeys WeeksKeys
 	//weeksKeys = dateKeys
 	// Find and visit all links
@@ -77,7 +80,7 @@ func getMonthInfo(dateKeys WeeksKeys) GroupWeekInfo {
 			fmt.Println("Request URL:", r.Request.URL, "failed with response:", r, "\nError:", err)
 		})
 
-		c.Visit("https://wol.jw.org/es/wol/meetings/r4/lp-s/2022/" + strconv.Itoa(numWeek))
+		c.Visit("https://wol.jw.org/es/wol/meetings/r4/lp-s/" + strconv.Itoa(currentYear) + "/" + strconv.Itoa(numWeek))
 	}
 
 	result, err := json.Marshal(groupWeekInfo)

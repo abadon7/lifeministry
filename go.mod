@@ -4,6 +4,7 @@ go 1.15
 
 require (
 	github.com/PuerkitoBio/goquery v1.8.0 // indirect
+	github.com/SebastiaanKlippert/go-wkhtmltopdf v1.9.0
 	github.com/antchfx/htmlquery v1.2.5 // indirect
 	github.com/antchfx/xmlquery v1.3.12 // indirect
 	github.com/gobwas/glob v0.2.3 // indirect

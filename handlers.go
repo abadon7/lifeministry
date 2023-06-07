@@ -269,3 +269,20 @@ func GetScheduleToFile(w http.ResponseWriter, r *http.Request, ps httprouter.Par
 	http.ServeFile(w, r, result)
 	return
 }
+
+func GetS89Files(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
+	ID, err := strconv.Atoi(ps.ByName("id"))
+	if err != nil {
+		http.Error(w, fmt.Sprintf("%s is not a valid schedule id, it must be a number", ps.ByName("id")), http.StatusBadRequest)
+		return
+	}
+	fmt.Println("Schedule # " + strconv.Itoa(ID))
+	schedule, err := db.FindSchedule(ID)
+	result := generateS89(schedule)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+	json.NewEncoder(w).Encode(result)
+	return
+}

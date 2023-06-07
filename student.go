@@ -19,3 +19,14 @@ type Couple struct {
 	Type     Assigment `json:"assigmenttype"`
 	Date     time.Time `json:"date"`
 }
+
+type S89 struct {
+	Name         string
+	Helper       string
+	Date         string
+	CheckReturn  string
+	CheckStudy   string
+	CheckFirst   string
+	CheckTalk    string
+	CheckReading string
+}

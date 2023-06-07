@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html style="font-size: 16px" lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta name="keywords"
+        content="ASIGNACIÓN PARA LA REUNIÓN&nbsp;VIDA Y MINISTERIO CRISTIANOS, Nombre:, Ayudante:, Fecha:" />
+    <meta name="description" content="" />
+    <title>S-89-S Template</title>
+    <!-- <link rel="stylesheet" href="nicepage.css" media="all" />
+    <link rel="stylesheet" href="Page-2.css" media="all" /> -->
+    <!-- <meta name="generator" content="Nicepage 5.1.6, nicepage.com" /> -->
+    <!-- <meta name="referrer" content="origin" /> -->
+    <!-- <link id="u-theme-google-font" rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i" media="all" /> -->
+
+    <script type="application/ld+json">
+      {
+        "@context": "http://schema.org",
+        "@type": "Organization",
+        "name": ""
+      }
+    </script>
+    <!-- <meta name="theme-color" content="#478ac9" /> -->
+    <!-- <meta property="og:title" content="Page 2" /> -->
+    <!-- <meta property="og:type" content="website" /> -->
+</head>
+
+<body style="<!-- width: 500px -->">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        .row {
+            display: flex;
+        }
+
+        /* Create two equal columns that sits next to each other */
+        .column {
+            flex: 50%;
+            /* Should be removed. Only for demonstration */
+        }
+
+        body label {
+            padding-left: 10px;
+        }
+
+        .dashed {
+            border-style: dashed;
+            border-left-width: inherit;
+            border-top-width: inherit;
+            border-right-width: inherit;
+            border-bottom-width: thin;
+            font-size: 18px;
+        }
+    </style>
+    <header class="u-clearfix u-header u-header" id="sec-bd66">
+        <div class="u-clearfix u-sheet u-sheet-1"></div>
+    </header>
+    <section class="u-clearfix u-section-1" id="sec-9f75" style="<!-- width: 500px -->">
+        <div class="u-clearfix u-sheet u-sheet-1">
+            <div style="text-align: center; font-size: 25px; margin-bottom: 10px">
+                <strong class="u-text u-text-default u-text-1" style="text-align: center">
+                    ASIGNACIÓN PARA LA REUNIÓN&nbsp;<br />VIDA Y MINISTERIO CRISTIANOS
+                </strong>
+            </div>
+            <!-- <h3 class="u-text u-text-2">
+                n<span style="text-decoration: underline !important"></span>ame
+            </h3> -->
+            <h2 class="u-text u-text-default u-text-3" style="display: inline">
+                Nombre:&nbsp;
+            </h2>
+            <div class="dashed" style="display: inline-flex; width: 70%; margin-bottom: 15px">
+                {{ .Name }}
+            </div>
+            <h2 class="u-text u-text-default u-text-5" style="display: inline">
+                Ayudante:
+            </h2>
+            <div class="dashed" style="display: inline-flex; width: 68%; margin-bottom: 15px">
+                {{.Helper}}
+            </div>
+            <h2 class="u-text u-text-default u-text-7" style="display: inline">
+                Fecha:&nbsp;
+            </h2>
+            <div class="dashed" style="display: inline-flex; width: 76%; margin-bottom: 10px">
+                {{.Date}}
+            </div>
+            <div style="font-size: 19px">
+                <div style="margin-top: 40px">
+                    <strong class="u-text u-text-default u-text-8">Tipo de interveción:</strong>
+                </div>
+                <div class="row">
+                    <div class="column" style="/*margin-left: 269px;margin-right: -160px;*/">
+                        <form action="https://forms.nicepagesrv.com/Form/Process"
+                            class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" source="email" name="form"
+                            style="padding-left: 15px">
+                            <div class="u-form-checkbox u-form-group u-label-top u-form-group-1">
+                                {{.CheckReading}}
+                                <label for="checkbox-7c7a" class="u-label u-label-1">Lectura de la Biblia&nbsp;</label>
+                            </div>
+                            <div>
+                                <div class="u-form-checkbox u-form-group u-form-group-2">
+                                    {{.CheckFirst}}
+                                    <label for="checkbox-7c7a" class="u-label u-label-2">Primera conversación</label>
+                                </div>
+                                <div class="dashed" style="margin-left: 30px; height: 20px; width: 139px"></div>
+                            </div>
+                            <div class="u-form-checkbox u-form-group u-form-group-3">
+                                {{.CheckReturn}}
+                                <label for="checkbox-7c7a" class="u-label u-label-3">Revisita</label>
+                            </div>
+                            <div class="dashed" style="margin-left: 30px; width: 139px; height: 20px"></div>
+                        </form>
+                    </div>
+                    <div class="column" style="flex: 40%">
+                        <form action="https://forms.nicepagesrv.com/Form/Process"
+                            class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" source="email" name="form"
+                            style="padding-left: 20px">
+                            <div class="u-form-checkbox u-form-group u-form-group-4">
+                                {{.CheckStudy}}
+                                <label for="checkbox-7c7a" class="u-label u-label-4">Curso Bíblico</label>
+                            </div>
+                            <div class="u-form-checkbox u-form-group u-form-group-5">
+                                {{.CheckTalk}}
+                                <label for="checkbox-7c7a" class="u-label u-label-5">Discuro</label>
+                            </div>
+                            <div class="u-form-checkbox u-form-group u-form-group-6">
+                                <input type="checkbox" id="checkbox-7c7a" name="checkbox" value="On" />
+                                <label for="checkbox-7c7a" class="u-label u-label-6">Otro:</label>
+                                <div class="dashed" style="margin-left: 10px; width: 40%; display: inline-flex"></div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div style="margin-top: 20px">
+                    <strong class="u-text u-text-default u-text-9">Se presentará en:</strong>
+                </div>
+                <div class="u-form u-form-7">
+                    <form action="https://forms.nicepagesrv.com/Form/Process"
+                        class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" source="email" name="form"
+                        style="padding-left: 15px">
+                        <div class="u-form-checkbox u-form-group u-form-group-7">
+                            <input type="checkbox" id="checkbox-7c7a" name="checkbox" value="On" checked />
+                            <label for="checkbox-7c7a" class="u-label u-label-7">Sala principal</label>
+                        </div>
+                    </form>
+                </div>
+                <div class="u-form u-form-8">
+                    <form action="https://forms.nicepagesrv.com/Form/Process"
+                        class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" source="email" name="form"
+                        style="padding-left: 15px">
+                        <div class="u-form-checkbox u-form-group u-form-group-8">
+                            <input type="checkbox" id="checkbox-7c7a" name="checkbox" value="On" />
+                            <label for="checkbox-7c7a" class="u-label u-label-8">Sala auxiliar núm. 1</label>
+                        </div>
+                    </form>
+                </div>
+                <div class="u-form u-form-9">
+                    <form action="https://forms.nicepagesrv.com/Form/Process"
+                        class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" source="email" name="form"
+                        style="padding-left: 15px">
+                        <div class="u-form-checkbox u-form-group u-form-group-9">
+                            <input type="checkbox" id="checkbox-7c7a" name="checkbox" value="On" />
+                            <label for="checkbox-7c7a" class="u-label u-label-9">Sala auxiliar ńum. 2</label>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div style="
+            margin-top: 10px;
+            margin-bottom: 30px;
+            text-align: justify;
+            font-size: 14px;
+          " class="u-text u-text-10">
+                <span style="font-weight: 700">Nota al estudiante:</span> En la Guía
+                de actividades encontrará la información que necesita para su
+                intervención, así como el aspecto de la oratoria que debe preparar con
+                la ayuda del folleto Maestros.
+            </div>
+            <div class="u-text u-text-11">
+                S​-89-S&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 11/20
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

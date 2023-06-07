@@ -23,7 +23,10 @@ func init() {
 		log.Fatal(err)
 	}
 
-	InitDataBase()
+	err = InitDataBase()
+	if err != nil {
+		log.Fatal(err)
+	}
 
 	router = httprouter.New()
 	router.GET("/", welcome)
@@ -34,6 +37,7 @@ func init() {
 	router.GET("/schedules", GetSchedules)
 	router.GET("/schedules/:id", GetSchedule)
 	router.GET("/getschedule/:id", GetScheduleToFile)
+	router.GET("/gets89/:id", GetS89Files)
 
 	router.POST("/students", AddStudent)
 	router.POST("/assignments", AddAssigment)
