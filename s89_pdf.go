@@ -11,12 +11,17 @@ import (
 )
 
 func s89ToPdf(data S89, name string, path string) {
+	fmt.Println("Creating S89 file")
 	pdfg, err := wkhtml.NewPDFGenerator()
 	if err != nil {
+		fmt.Println(err)
 		return
 	}
+
+	fmt.Println("Size")
+
 	pdfg.Dpi.Set(300)
-	pdfg.PageSize.Set("A6")
+	pdfg.PageSize.Set("A5")
 	// 	htmlStr := `<html><body><h1 style="color:red;">This is an html
 	//  from pdf to test color<h1><img src="http://api.qrserver.com/v1/create-qr-
 	// code/?data=HelloWorld" alt="img" height="42" width="42"></img></body></html>`
@@ -31,6 +36,8 @@ func s89ToPdf(data S89, name string, path string) {
 	newData.CheckStudy = checkOff
 	newData.CheckReturn = checkOff
 	newData.CheckTalk = checkOff
+
+	fmt.Println("Checking Data")
 
 	if data.CheckReading == "1" {
 		newData.CheckReading = checkOn
@@ -64,6 +71,8 @@ func s89ToPdf(data S89, name string, path string) {
 	htmlStr := buffer.String()
 
 	pdfg.AddPage(wkhtml.NewPageReader(strings.NewReader(htmlStr)))
+
+	fmt.Println("Creating Buffer")
 
 	// Create PDF document in internal buffer
 	err = pdfg.Create()
